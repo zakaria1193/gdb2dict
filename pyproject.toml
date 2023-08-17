@@ -10,7 +10,7 @@
 # There are some restrictions on what makes a valid project name
 # specification here:
 # https://packaging.python.org/specifications/core-metadata/#name
-name = "sampleproject"  # Required
+name = "gdb2json"  # Required
 
 # Versions should comply with PEP 440:
 # https://www.python.org/dev/peps/pep-0440/
@@ -22,7 +22,7 @@ version = "3.0.0"  # Required
 # This is a one-line description or tagline of what your project does. This
 # corresponds to the "Summary" metadata field:
 # https://packaging.python.org/specifications/core-metadata/#summary
-description = "A sample Python project"  # Optional
+description = "A converter from GDB ouput to JSON"  # Optional
 
 # This is an optional longer description of your project that represents
 # the body of text which users will see when they visit PyPI.
@@ -57,14 +57,14 @@ keywords = ["sample", "setuptools", "development"]  # Optional
 # authored the project, and a valid email address corresponding to the name
 # listed.
 authors = [
-  {name = "A. Random Developer", email = "author@example.com" } # Optional
+  {name = "Zakaria FADLI", email = "zakaria1193@gmail.com" } # Optional
 ]
 
 # This should be your name or the names of the organization who currently
 # maintains the project, and a valid email address corresponding to the name
 # listed.
 maintainers = [
-  {name = "A. Great Maintainer", email = "maintainer@example.com" } # Optional
+  {name = "Zakaria FADLI", email = "zakaria1193@gmail.com" } # Optional
 ]
 
 # Classifiers help users find your project by categorizing it.
@@ -103,7 +103,7 @@ classifiers = [  # Optional
 # For an analysis of this field vs pip's requirements files see:
 # https://packaging.python.org/discussions/install-requires-vs-requirements/
 dependencies = [ # Optional
-  "peppercorn"
+  "json"
 ]
 
 # List additional groups of dependencies here (e.g. development
@@ -129,23 +129,23 @@ test = ["coverage"]
 # maintainers, and where to support the project financially. The key is
 # what's used to render the link text on PyPI.
 [project.urls]  # Optional
-"Homepage" = "https://github.com/pypa/sampleproject"
-"Bug Reports" = "https://github.com/pypa/sampleproject/issues"
+"Homepage" = "https://github.com/zakaria1193/gdb2json"
+"Bug Reports" = "https://github.com/zakaria1193/gdb2json/issues"
 "Funding" = "https://donate.pypi.org"
 "Say Thanks!" = "http://saythanks.io/to/example"
-"Source" = "https://github.com/pypa/sampleproject/"
+"Source" = "https://github.com/zakaria1193/gdb2json"
 
 # The following would provide a command line executable called `sample`
 # which executes the function `main` from this package when invoked.
 [project.scripts]  # Optional
-sample = "sample:main"
+sample = "gdb2json:main"
 
 # This is configuration specific to the `setuptools` build backend.
 # If you are using a different build backend, you will need to change this.
 [tool.setuptools]
 # If there are data files included in your packages that need to be
 # installed, specify them here.
-package-data = {"sample" = ["*.dat"]}
+package-data = {}
 
 [build-system]
 # These are the assumed default build requirements from pip:
