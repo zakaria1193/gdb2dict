@@ -114,22 +114,23 @@ def gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
         raise Exception("obj_value_to_dict called on a primitive type")
 
     # Recursively extract data from nested structs/unions/arrays
+    fields = gdb_value.type.fields()
 
-    for field in gdb_value.type.fields():
+    for i, field in enumerate(fields):
         field_name = field.name
 
-        # FIXME: Case of anonymous struct members (field_name is None),
-        #        should be handled. Now we just print the whole parent
-        #        struct as data
         if field_name is None:
-            print_debug("WARNING: anonymous struct/union member, "
-                        "conversion skipped")
-            # Clear data dict and set the whole parent struct as data
-            data.clear()
-            data['::anonymous_fields'] = str(gdb_value)
-            return
+            # This happens with anonymous struct field (C11)
+            # https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html
+            field_name = "::unnamed_field_{}".format(i)
+            # Field value should not be accessed by field_name
+            # This is documented in:
+            # https://sourceware.org/bugzilla/show_bug.cgi?id=15464
 
-        field_value = gdb_value[field_name]
+        field_value = gdb_value[field]
+
+        field_value = gdb_value[field]
+
         field_type = field_value.type.strip_typedefs()
         field_type_code = field_type.code
 
