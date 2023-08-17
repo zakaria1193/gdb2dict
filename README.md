@@ -17,6 +17,32 @@ If you don't know how to make those, refer to the [GDB documentation](https://so
 
 Or this article from [Memfault](https://interrupt.memfault.com/blog/automate-debugging-with-gdb-python-api)
 
+# Usage
+```python
+from gdb2json import gdb_value_to_json_obj
+```
+
+Simply call the function `gdb_value_to_json_obj` with the value to convert, and the object to fill with the converted value.
+
+You're responsible for creating the object to fill, and for using it after the conversion.
+
+```python
+
+
+gdb_value_to_json_obj(gdb_value: gdb.Value,
+                      obj_to_fill,
+                      key_for_primitive_value=None):
+    """Converts a gdb.Value to a python dictionary or list.
+
+    Args:
+        gdb_value (gdb.Value): The value to convert.
+        obj_to_fill (dict): The dictionary or list to fill with the converted value.
+        key_for_primitive_value (str, optional): Needed only if the object to be filled is a dictionary.
+    """
+
+
+```
+
 ## Examples
 
 ### Simple example
