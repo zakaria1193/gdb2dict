@@ -117,6 +117,18 @@ def gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
 
     for field in gdb_value.type.fields():
         field_name = field.name
+
+        # FIXME: Case of anonymous struct members (field_name is None),
+        #        should be handled. Now we just print the whole parent
+        #        struct as data
+        if field_name is None:
+            print_debug("WARNING: anonymous struct/union member, "
+                        "conversion skipped")
+            # Clear data dict and set the whole parent struct as data
+            data.clear()
+            data['::anonymous_fields'] = str(gdb_value)
+            return
+
         field_value = gdb_value[field_name]
         field_type = field_value.type.strip_typedefs()
         field_type_code = field_type.code
