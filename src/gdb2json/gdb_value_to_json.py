@@ -5,7 +5,7 @@ DEBUG = False
 
 if DEBUG:
     def print_debug(msg):
-        print_debug(msg)
+        print(msg)
 else:
     def print_debug(msg):
         pass
@@ -121,8 +121,8 @@ def gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
         field_type = field_value.type.strip_typedefs()
         field_type_code = field_type.code
 
-        print_debug("---- subfield_name: {}"
-                    " type_raw: {} {}"
+        print_debug("---- subfield_name: {} "
+                    "type_raw: {} {} "
                     "type_: {} {} ".format(
                         field_name,
                         field.type,
