@@ -1,39 +1,101 @@
-# A sample Python project
+# GDB to JSON converter
 
-![Python Logo](https://www.python.org/static/community_logos/python-logo.png "Sample inline image")
+This tool extends GDB python scripting capabilities.
 
-A sample project that exists as an aid to the [Python Packaging User
-Guide][packaging guide]'s [Tutorial on Packaging and Distributing
-Projects][distribution tutorial].
+Using gdb (GNU Debugger) use a specific format to print structures and unions, this format is not easy to parse, so this tool converts the output of gdb to a JSON format.
 
-This project does not aim to cover best practices for Python project
-development as a whole. For example, it does not provide guidance or tool
-recommendations for version control, documentation, or testing.
+## Use cases
 
-[The source for this project is available here][src].
+Imagine you are trying to automatize the debugging of a meauring, and you want to parse the output of a measure function that returns a structure, you can use this tool to convert the output of gdb to a JSON format,
+you can do that manually by reading field by and field and making your own python dictionary, but this tool does that for you.
 
-The metadata for a Python project is defined in the `pyproject.toml` file,
-an example of which is included in this project. You should edit this file
-accordingly to adapt this sample project to your needs.
+It comes handy when you have a lot of structures and unions to parse, and you don't want to write a lot of code to parse them, since gdb already knows how to parse them.
 
-----
+The printer can be used in your custom breakpoints, or your custom commands, or in your custom pretty printers.
 
-This is the README file for the project.
+If you don't know how to make those, refer to the [GDB documentation](https://sourceware.org/gdb/onlinedocs/gdb/Python-API.html#Python-API).
 
-The file should use UTF-8 encoding and can be written using
-[reStructuredText][rst] or [markdown][md use] with the appropriate [key set][md
-use]. It will be used to generate the project webpage on PyPI and will be
-displayed as the project homepage on common code-hosting services, and should be
-written for that purpose.
+Or this article from [Memfault](https://interrupt.memfault.com/blog/automate-debugging-with-gdb-python-api)
 
-Typical contents for this file would include an overview of the project, basic
-usage examples, etc. Generally, including the project changelog in here is not a
-good idea, although a simple “What's New” section for the most recent version
-may be appropriate.
+## Examples
 
-[packaging guide]: https://packaging.python.org
-[distribution tutorial]: https://packaging.python.org/tutorials/packaging-projects/
-[src]: https://github.com/pypa/sampleproject
-[rst]: http://docutils.sourceforge.net/rst.html
-[md]: https://tools.ietf.org/html/rfc7764#section-3.5 "CommonMark variant"
-[md use]: https://packaging.python.org/specifications/core-metadata/#description-content-type-optional
+### Simple example
+
+```python my_script.py
+
+import gdb2json
+
+OUTPUT_DICT = {}
+
+class MyCustomBreakpoint(gdb.Breakpoint):
+    def stop(self):
+        # Access arguments
+        arg1 = gdb.parse_and_eval("arg1")
+
+        # Convert to json
+        gdb_value_json = {}
+        gdb_value_to_json_obj(arg1, gdb_value_json)
+
+        # Set in output dict
+        OUTPUT_DICT[str(type_id)].append(gdb_value_json)
+
+        # Return False to not halt (Automatically continue)
+        return False
+
+
+MyCustomBreakpoint("my_function")
+
+# Run the program
+gdb.execute("run")
+
+# Write the output to a file
+with open("output.json", "w") as f:
+    json.dump(OUTPUT_DICT, f, indent=4)
+
+```
+Source this script in gdb will set the breakpoint and fill the output file with the parsed values.
+
+```bash
+$ gdb -x my_script.py
+```
+
+Then you can post process the output file with your favorite language.
+
+
+## Example with cast
+
+Cast any void pointer to a structure pointer, and print the structure is a powerful gdb feature
+for parsing binary data. This tool makes it better by making the output as JSON.
+
+```python my_script.py
+
+import gdb2json
+
+OUTPUT_DICT = {}
+
+class MyCustomBreakpoint(gdb.Breakpoint):
+    def stop(self):
+        # Access arguments
+        arg1 = gdb.parse_and_eval("arg1")
+
+        # Cast to a structure pointer
+        arg1 = arg1.cast("my_struct*"")
+
+        arg1 = gdb.parse_and_eval("*arg1")
+
+        # Convert to json
+        gdb_value_json = {}
+        gdb_value_to_json_obj(arg1, gdb_value_json)
+
+        # Set in output dict
+        OUTPUT_DICT[str(type_id)].append(gdb_value_json)
+
+        # Return False to not halt (Automatically continue)
+        return False
+
+```
+
+
+
+
+
