@@ -1,5 +1,6 @@
-import gdb
 import json
+
+import gdb
 
 DEBUG = False
 
@@ -10,79 +11,39 @@ else:
     def print_debug(msg):
         pass
 
+
 OBJ_TYPE_NEEDS_RECURSIVE_CALL = [
     gdb.TYPE_CODE_STRUCT,
     gdb.TYPE_CODE_UNION,
     gdb.TYPE_CODE_ARRAY
 ]
 
-def gdb_struct_or_union_to_json(gdb_value: gdb.Value):
+
+def gdb_value_to_dict(gdb_value: gdb.Value):
     """
-    Converts a gdb struct or union to a json string
+    Converts a gdb.Value to a json string
 
     :param gdb_value: gdb.Value -> Must be a struct or union
-    :return: json string
+    :return: data: dict -> The data of the gdb.Value as a dict
     """
 
-    data = {}
-    gdb_value_to_dict(gdb_value, data)
-    return json.dumps(data, indent=4)
-
-def append_gdb_value_to_list(gdb_value: gdb.Value, list_to_fill: list):    
-    gdb_value_to_obj(gdb_value, list_to_fill)
+    data: dict = {}
+    append_gdb_value_to_dict(gdb_value, data)
+    return data
 
 
-def append_gdb_value_to_dict(gdb_value: gdb.Value,
-                             dict_to_fill: dict,
-                             key: str):
-    gdb_value_to_obj(gdb_value, dict_to_fill, key)
-
-
-def gdb_value_to_obj(gdb_value: gdb.Value,
-                     obj_to_fill,
-                     key=None):
+def gdb_value_primitive_to_str(gdb_value: gdb.Value):
     """
-    //!\\ Function made to be called recursively
+    Converts a primitive gdb.Value to a str or hex
 
-    This function adapts to the type of the gdb_value 
-    and adapts to the type of the obj_to_fill
+    A primitive gdb.Value is a value that is not of the types listed in
+    OBJ_TYPE_NEEDS_RECURSIVE_CALL (struct, union, array, etc...)
 
-    if obj_to_fill is a dict, a key must be given
-    """
-
-    obj_value_code = gdb_value.type.strip_typedefs().code
-
-    # If the object is a struct, union, array... recursively process its data
-    if obj_value_code in OBJ_TYPE_NEEDS_RECURSIVE_CALL:
-        if type(obj_to_fill) is dict:
-            gdb_value_to_dict(gdb_value, obj_to_fill[key])
-        elif type(obj_to_fill) is list:
-            item = {}
-            gdb_value_to_dict(gdb_value, item)
-            obj_to_fill.append(item)
-
-    # Primitive type (int, char, enum, etc) push it to the obj_to_fill
-    else:
-        if type(obj_to_fill) is dict:
-            if key is None:
-                raise Exception("key is needed when obj_to_fill is a dict")
-            obj_to_fill[key] = gdb_value_to_value(
-                gdb_value)
-        elif type(obj_to_fill) is list:
-            obj_to_fill.append(gdb_value_to_value(gdb_value))
-        else:
-            raise Exception("obj_to_fill is not a dict or a list")
-
-    print_debug("Returning data: {}".format(json.dumps(obj_to_fill, indent=4)))
-
-
-def gdb_value_to_value(gdb_value: gdb.Value):
-    """
-    Sets given value in the given dict under the given key
-
-    :param gdb_value: gdb.Value to be returned
+    :param gdb_value: gdb.Value to be converted
     :return: str or hex of the gdb.Value
     """
+
+    print_debug("gdb_value_primitive_to_str: {}".format(gdb_value))
 
     gdb_value_type_code = gdb_value.type.strip_typedefs().code
 
@@ -91,19 +52,25 @@ def gdb_value_to_value(gdb_value: gdb.Value):
 
     if gdb_value_type_code == gdb.TYPE_CODE_INT:
         return hex(int(gdb_value))
-    else:
-        return str(gdb_value)
+
+    return str(gdb_value)
 
 
-def gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
+def append_gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
     """
-    Recursive function to convert gdb C struct/union/array to python
-    dict or list
+    Recursive function to convert gdb.Value object to dict key/values
+    and add them into given dict.
 
-    :param gdb_value: gdb.Value
-    :param data: dict or list to be filled
+    //!\\ Function is recursive
+
+    :param gdb_value: gdb.Value to be appended (Can be any C type)
+    :param data: dict to be filled
     :return: None
     """
+
+    print_debug("append_gdb_value_to_dict: {}".format(gdb_value))
+
+    assert isinstance(data, dict), f"data must be a dict, not {type(data)}"
 
     gdb_value_type_code = gdb_value.type.strip_typedefs().code
 
@@ -142,13 +109,12 @@ def gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
                         field.type.code,
                         field_type, field_type.code))
 
-        if field_type_code == gdb.TYPE_CODE_STRUCT \
-                or field_type_code == gdb.TYPE_CODE_UNION:
+        if field_type_code in (gdb.TYPE_CODE_STRUCT, gdb.TYPE_CODE_UNION):
             print_debug("Creating struct under data [{}]".format(field_name))
 
             # If the field is a nested struct, recursively extract its data
-            struct_data = {}
-            gdb_value_to_dict(field_value, struct_data)
+            struct_data: dict = {}
+            append_gdb_value_to_dict(field_value, struct_data)
             if field_type_code == gdb.TYPE_CODE_STRUCT:
                 key_ = field_name + "::struct"
             else:  # gdb.TYPE_CODE_UNION
@@ -161,10 +127,45 @@ def gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
             key_ = field_name + "::array"
             data[key_] = []
 
-            # For each item in the array, recursively extract its data
-            for i in range(field_type.range()[1]):
-                gdb_value_to_obj(field_value[i], data[key_])
+            # For each item in the array, recursively extract its data and
+            # append it to the list
+            for j in range(field_type.range()[1]):
+                append_gdb_value_to_list(field_value[j], data[key_])
 
         else:
             print_debug("Creating primitive under [{}]".format(field_name))
-            data[field_name] = gdb_value_to_value(field_value)
+            data[field_name] = gdb_value_primitive_to_str(field_value)
+
+
+def append_gdb_value_to_list(gdb_value: gdb.Value,
+                             list_to_fill: list):
+    """
+    Recursive function to convert gdb.Value object to dict key/values and adds
+    them into given dict
+
+    //!\\ Function is recursive (indirectly through append_gdb_value_to_dict)
+
+    :param gdb_value: gdb.Value to be appended (Can be any C type)
+    :param data: dict to be filled
+    :return: None
+    """
+
+    print_debug("append_gdb_value_to_list: {}".format(gdb_value))
+
+    assert isinstance(list_to_fill, list), "list_to_fill must be a list, "\
+                                           f"not {type(list_to_fill)}"
+
+    obj_value_code = gdb_value.type.strip_typedefs().code
+    # If the object is a struct, union, array...
+    # put it in a dict then append it
+    if obj_value_code in OBJ_TYPE_NEEDS_RECURSIVE_CALL:
+        item: dict = {}
+        append_gdb_value_to_dict(gdb_value, item)
+        list_to_fill.append(item)
+
+    # Primitive type (int, char, enum, etc) append it directly
+    else:
+        list_to_fill.append(gdb_value_primitive_to_str(gdb_value))
+
+    print_debug("Returning data: {}".format(json.dumps(list_to_fill,
+                                                       indent=4)))
