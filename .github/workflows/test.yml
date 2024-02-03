@@ -1,4 +1,4 @@
-# this file is *not* meant to cover or endorse the use of GitHub Actions, but rather to
+# This file is *not* meant to cover or endorse the use of GitHub Actions, but rather to
 # help test this project
 
 name: Test
@@ -9,17 +9,28 @@ jobs:
   test:
     strategy:
       matrix:
-        python: ['3.7', '3.8', '3.9', '3.10']
-        platform: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.7", "3.8", "3.9", "3.10"]
+        platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python }}
-    - name: Install test dependencies
-      run: python -m pip install -U tox
-    - name: Test
-      run: python -m tox -e py
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install gdb
+        run: sudo apt-get update && sudo apt-get install -y gdb
+
+      - name: Build gdb2json local package to a current dir
+        # gdb's python interpreter is not the same as the one running on the machine
+        # letting pip chose the install location will put it where it's unreachable
+        # by gdb's python interpreter. We need to install it to the current dir.
+        # and set PYTHONPATH to the current dir
+        run: |
+          pip install . --target $(pwd)
+          echo PYTHONPATH=$(pwd) >> $GITHUB_ENV
+
+      - name: Test
+        run: bash tests/test.sh test
