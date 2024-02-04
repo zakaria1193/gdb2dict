@@ -1,14 +1,14 @@
-# GDB.value to primitive python datatype Converter
+# GDB.value to python dict converter
 
 This tool extends GDB python scripting capabilities.
 
-gdb (GNU Debugger) use a specific format to print structures and unions, this format is not easy to parse, so this tool converts the output of gdb to python objects (dict, list, etc...).
+gdb (GNU Debugger) use a specific format to print C/C++ programs data, this format is not easy to parse, so this tool converts the output of gdb to python dictionaries.
 
-So, It can also be used to serialize C data structures to JSON objects, or to any other format.
+So it can also be used to serialize C data structures to JSON objects, or to any other format.
 
 Example of conversion:
 
-If you have a structure like this:
+If you have a structure like this in you C code:
 
 ```c
 struct Shape {
@@ -33,7 +33,7 @@ struct Shape {
 };
 ```
 
-When you print an instance of this struct in python gdb (or in the gdb console),
+When you print an instance of this struct in python gdb script (or in the classic gdb console),
 both will give this printable string that is not a native python object
 
 ```gdb
@@ -58,8 +58,7 @@ OR
 }
 ```
 
-gdb2json lets convert the output of gdb to a python dictionary. and then to a json string if you
-want to.
+gdb2json lets convert the output of gdb to a python dictionary.
 
 ```python
 import gdb2json
@@ -118,7 +117,7 @@ Or this article from [Memfault](https://interrupt.memfault.com/blog/automate-deb
 
 Let's use it in a python scripted gdb breakpoint handler.
 The idea is catch the functions that identifies the TLV type and value,
-then cast to a structure and write to a file in json format.
+then cast to a structure and write to a file in JSON format.
 
 ```python my_script.py
 
