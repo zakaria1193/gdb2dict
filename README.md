@@ -1,3 +1,6 @@
+[![Build](https://github.com/zakaria1193/gdb2dict/actions/workflows/release.yml/badge.svg)](https://github.com/zakaria1193/gdb2dict/actions/workflows/release.yml)
+[![Tests](https://github.com/zakaria1193/gdb2dict/actions/workflows/test.yml/badge.svg)](https://github.com/zakaria1193/gdb2dict/actions/workflows/test.yml)
+
 # GDB.value to python dict converter
 
 This tool extends GDB python scripting capabilities.
