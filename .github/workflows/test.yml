@@ -21,7 +21,9 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: Install gdb
-        run: sudo apt-get update && sudo apt-get install -y gdb
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: gdb
 
       - name: Build gdb2json local package to a current dir
         # gdb's python interpreter is not the same as the one running on the machine
