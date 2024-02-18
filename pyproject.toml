@@ -10,7 +10,7 @@
 # There are some restrictions on what makes a valid project name
 # specification here:
 # https://packaging.python.org/specifications/core-metadata/#name
-name = "gdb2json"  # Required
+name = "gdb2dict"  # Required
 
 # Versions should comply with PEP 440:
 # https://www.python.org/dev/peps/pep-0440/
@@ -128,11 +128,11 @@ test = ["coverage"]
 # maintainers, and where to support the project financially. The key is
 # what's used to render the link text on PyPI.
 [project.urls]  # Optional
-"Homepage" = "https://github.com/zakaria1193/gdb2json"
-"Bug Reports" = "https://github.com/zakaria1193/gdb2json/issues"
+"Homepage" = "https://github.com/zakaria1193/gdb2dict"
+"Bug Reports" = "https://github.com/zakaria1193/gdb2dict/issues"
 "Funding" = "https://donate.pypi.org"
 "Say Thanks!" = "http://saythanks.io/to/example"
-"Source" = "https://github.com/zakaria1193/gdb2json"
+"Source" = "https://github.com/zakaria1193/gdb2dict"
 
 # The following would provide a command line executable called `sample`
 # which executes the function `main` from this package when invoked.

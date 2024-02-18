@@ -61,17 +61,17 @@ OR
 }
 ```
 
-gdb2json lets convert the output of gdb to a python dictionary.
+gdb2dict lets convert the output of gdb to a python dictionary.
 
 ```python
-import gdb2json
+import gdb2dict
 ```
 
 Simply call the function `gdb_value_to_dict` with the value to convert,
 and it will return a python dictionary.
 
 ```python
-> output_dict = gdb2json.gdb_value_to_dict(gdb.parse_and_eval("my_struct"))
+> output_dict = gdb2dict.gdb_value_to_dict(gdb.parse_and_eval("my_struct"))
 
 output_dict =
 {
@@ -124,7 +124,7 @@ then cast to a structure and write to a file in JSON format.
 
 ```python my_script.py
 
-import gdb2json
+import gdb2dict
 
 OUTPUT_LIST = []
 
@@ -141,7 +141,7 @@ class MyCustomBreakpoint(gdb.Breakpoint):
         # Cast to a structure pointer
         arg1_payload = arg1_payload.cast(type_to_cast)
 
-        OUTPUT_LIST.append(gdb2json.gdb_value_to_dict(arg1_payload))
+        OUTPUT_LIST.append(gdb2dict.gdb_value_to_dict(arg1_payload))
 
         # Return False to not halt (Automatically continue)
         return False

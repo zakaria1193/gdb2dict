@@ -1,7 +1,7 @@
 import gdb
 from gdb_init import init, test_function_wrapper
 
-import gdb2json
+import gdb2dict
 
 MAP_TYPE_ENUM_TO_TYPE = {
     "TYPE_STRUCT_POINT": "struct Point",
@@ -31,7 +31,7 @@ class CustomBreakpointWithCast(gdb.Breakpoint):
         print("👁️GDB value grabbed from executable: " + str(value))
 
         # Test appending to a list
-        test_function_wrapper(gdb2json.gdb_value_to_dict,
+        test_function_wrapper(gdb2dict.gdb_value_to_dict,
                               function_args=(value,),
                               test_name_suffix='after_cast_to_' + type_to_cast)
 

@@ -59,8 +59,8 @@ def save_as_expected_test_result(name: str,
     print("💾 Saving test results under {} as reference".format(output_path))
 
     if type(obj) is list:
-        output = {"gdb2json_output_list": None}
-        output["gdb2json_output_list"] = obj
+        output = {"gdb2dict_output_list": None}
+        output["gdb2dict_output_list"] = obj
     elif type(obj) is dict:
         output = obj
 
