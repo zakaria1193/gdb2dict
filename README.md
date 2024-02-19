@@ -77,13 +77,13 @@ output_dict =
 {
     'id': '0x1',
     'color': 'RED',
-    '::unnamed_field_1::union':
+    '##unnamed_field_1##union':
     {
         'floatValue': '5.88545355e-44',
         'intValue': '0x2a'
     },
-    'center::struct': {'x': '0x1e', 'y': '0x28'},
-    'data::union':
+    'center##struct': {'x': '0x1e', 'y': '0x28'},
+    'data##union':
     {
         'floatValue': '1.14313912e+27',
         'intValue': '0x6c6c6548'
