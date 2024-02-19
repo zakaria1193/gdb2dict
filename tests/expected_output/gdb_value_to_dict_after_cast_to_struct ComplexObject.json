@@ -1,12 +1,12 @@
 {
     "value": "0x3e7",
-    "::unnamed_field_1::struct": {
+    "##unnamed_field_1##struct": {
         "x": "1.5",
         "y": "2.5"
     },
-    "::unnamed_field_2::union": {
+    "##unnamed_field_2##union": {
         "intValue": "0x7b",
-        "stringValue::array": [
+        "stringValue##array": [
             "0x7b",
             "0x0",
             "0x0",
@@ -17,21 +17,21 @@
             "0x0",
             "0x0"
         ],
-        "shape::struct": {
+        "shape##struct": {
             "id": "0x7b",
             "color": "RED",
-            "::unnamed_field_2::union": {
+            "##unnamed_field_2##union": {
                 "intValue": "0x0",
                 "floatValue": "0"
             },
-            "center::struct": {
+            "center##struct": {
                 "x": "0x0",
                 "y": "0x0"
             },
-            "data::union": {
+            "data##union": {
                 "intValue": "0x0",
                 "floatValue": "0",
-                "stringValue::array": [
+                "stringValue##array": [
                     "0x0",
                     "0x0",
                     "0x0",
