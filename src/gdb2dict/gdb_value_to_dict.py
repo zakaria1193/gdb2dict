@@ -89,7 +89,7 @@ def append_gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
         if field_name is None:
             # This happens with anonymous struct field (C11)
             # https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html
-            field_name = "::unnamed_field_{}".format(i)
+            field_name = "##unnamed_field_{}".format(i)
             # Field value should not be accessed by field_name
             # This is documented in:
             # https://sourceware.org/bugzilla/show_bug.cgi?id=15464
@@ -116,15 +116,15 @@ def append_gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
             struct_data: dict = {}
             append_gdb_value_to_dict(field_value, struct_data)
             if field_type_code == gdb.TYPE_CODE_STRUCT:
-                key_ = field_name + "::struct"
+                key_ = field_name + "##struct"
             else:  # gdb.TYPE_CODE_UNION
-                key_ = field_name + "::union"
+                key_ = field_name + "##union"
             data[key_] = struct_data
 
         elif field_type_code == gdb.TYPE_CODE_ARRAY:
             print_debug("Creating array under data [{}]".format(field_name))
             # Initialize it as a list
-            key_ = field_name + "::array"
+            key_ = field_name + "##array"
             data[key_] = []
 
             # For each item in the array, recursively extract its data and
