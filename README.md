@@ -94,11 +94,11 @@ output_dict =
 
 ### Metatada
 
-As you can see some field names (keys after conversion) have added metadata `**##struct**`, `**##union**`
+As you can see some field names (keys after conversion) have added metadata `##struct`, `##union`
 That's needed to differentiate between fields that are structs and fields that are unions.
 
-Another metadata can be added to the keys, it's `**##unnamed_field_1##struct**`,
-`**##unnamed_field_2##union**` etc...
+Another metadata can be added to the keys, it's `##unnamed_field_1##struct`,
+`##unnamed_field_2##union` etc...
 
 That's to cover for [ C11's unnanmed fields ](https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html)
 that can be sub-structs or sub-unions without a name.
