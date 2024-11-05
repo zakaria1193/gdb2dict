@@ -5,7 +5,7 @@
 
 This tool extends GDB python scripting capabilities.
 
-gdb (GNU Debugger) use a specific format to print C/C++ programs data, this format is not easy to parse, so this tool converts the output of gdb to python dictionaries.
+gdb (GNU Debugger) uses a specific format to print C/C++ programs data, this format is not easy to parse, so this tool converts the output of gdb to python dictionaries.
 
 So it can also be used to serialize C data structures to JSON objects, or to any other format.
 
