@@ -1,6 +1,11 @@
 [![Build](https://github.com/zakaria1193/gdb2dict/actions/workflows/release.yml/badge.svg)](https://github.com/zakaria1193/gdb2dict/actions/workflows/release.yml)
 [![Tests](https://github.com/zakaria1193/gdb2dict/actions/workflows/test.yml/badge.svg)](https://github.com/zakaria1193/gdb2dict/actions/workflows/test.yml)
 
+![PyPI](https://img.shields.io/pypi/v/gdb2dict?label=pypi%20package)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/gdb2dict)
+
+
+
 # GDB.value to python dict converter
 
 This tool extends GDB python scripting capabilities.
@@ -163,3 +168,11 @@ $ gdb -x my_script.py --batch --nw --nx --return-child-result
 see `gdb --help` for more information.
 
 Then you can post process the output file with your favorite language.
+
+
+# Installation
+
+`pip install gdb2dict` preferably in your virual env.
+
+You'll probably face issues importing custom python modules from within gdb scripts, for that refer to this [article](https://interrupt.memfault.com/blog/using-pypi-packages-with-GDB)
+
