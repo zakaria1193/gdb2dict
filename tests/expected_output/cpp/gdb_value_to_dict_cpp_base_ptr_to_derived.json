@@ -1,0 +1,18 @@
+{
+    "base_private_int": "0x3",
+    "base_private_string": "\"BasePrivate\"",
+    "base_protected_int": "0x2",
+    "base_protected_string": "\"DerivedProtectedHiding\"",
+    "base_public_int": "0x190",
+    "derived_private_int": "0x6",
+    "derived_private_string": "\"DerivedPrivate\"",
+    "derived_protected_int": "0x5",
+    "derived_protected_string": "\"DerivedProtected\"",
+    "derived_public_int": "0x2c",
+    "static_base_protected_int": "0x66",
+    "static_base_public_int": "0x65",
+    "static_const_base_public_int": "0x64",
+    "static_derived_protected_int": "0xca",
+    "static_derived_public_int": "0xc9",
+    "static_const_derived_public_int": "0xc8"
+}
