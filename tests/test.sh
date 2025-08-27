@@ -42,6 +42,7 @@ function run_test_program_with_gdb_script() {
 GDB_TEST_SCRIPTS=(
   ./print_after_cast.py
   ./print_without_cast.py
+  ./print_array_test.py
 )
 
 for gdb_script in "${GDB_TEST_SCRIPTS[@]}"; do

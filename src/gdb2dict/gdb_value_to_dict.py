@@ -129,7 +129,7 @@ def append_gdb_value_to_dict(gdb_value: gdb.Value, data: dict):
 
             # For each item in the array, recursively extract its data and
             # append it to the list
-            for j in range(field_type.range()[1]):
+            for j in range(field_type.range()[1] + 1):
                 append_gdb_value_to_list(field_value[j], data[key_])
 
         else:
