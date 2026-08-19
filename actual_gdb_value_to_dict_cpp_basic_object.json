@@ -1,0 +1,36 @@
+{
+    "public_bool": "false",
+    "public_char": "0x0",
+    "public_float": "45.6699982",
+    "public_int": "0x0",
+    "public_string##struct": {
+        "##unnamed_field_2##union": {
+            "_M_allocated_capacity": "0x0",
+            "_M_local_buf##array": [
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0",
+                "0x0"
+            ]
+        },
+        "_M_dataplus##struct": {
+            "_M_p": "0x0",
+            "std::allocator<char>##struct": {
+                "std::__new_allocator<char>##struct": {}
+            }
+        },
+        "_M_string_length": "0x0"
+    }
+}

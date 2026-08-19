@@ -1,0 +1,413 @@
+{
+    "basic_obj##struct": {
+        "public_bool": "true",
+        "public_char": "0x0",
+        "public_float": "3.1400001",
+        "public_int": "0x0",
+        "public_string##struct": {
+            "##unnamed_field_2##union": {
+                "_M_allocated_capacity": "0x0",
+                "_M_local_buf##array": [
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0"
+                ]
+            },
+            "_M_dataplus##struct": {
+                "_M_p": "0x0",
+                "std::allocator<char>##struct": {
+                    "std::__new_allocator<char>##struct": {}
+                }
+            },
+            "_M_string_length": "0x0"
+        }
+    },
+    "basic_ptr##struct": {
+        "public_bool": "true",
+        "public_char": "0x0",
+        "public_float": "3.1400001",
+        "public_int": "0x0",
+        "public_string##struct": {
+            "##unnamed_field_2##union": {
+                "_M_allocated_capacity": "0x0",
+                "_M_local_buf##array": [
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0"
+                ]
+            },
+            "_M_dataplus##struct": {
+                "_M_p": "0x0",
+                "std::allocator<char>##struct": {
+                    "std::__new_allocator<char>##struct": {}
+                }
+            },
+            "_M_string_length": "0x0"
+        }
+    },
+    "color_member": "BLUE",
+    "contained_obj##struct": {
+        "data##struct": {
+            "##unnamed_field_2##union": {
+                "_M_allocated_capacity": "0x0",
+                "_M_local_buf##array": [
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0"
+                ]
+            },
+            "_M_dataplus##struct": {
+                "_M_p": "0x0",
+                "std::allocator<char>##struct": {
+                    "std::__new_allocator<char>##struct": {}
+                }
+            },
+            "_M_string_length": "0x0"
+        },
+        "id": "0x0"
+    },
+    "derived_obj##struct": {
+        "Base##struct": {
+            "Base##error": "Error accessing field: cannot resolve overloaded method `Base': no arguments supplied",
+            "base_protected_string##struct": {
+                "##unnamed_field_2##union": {
+                    "_M_allocated_capacity": "0x0",
+                    "_M_local_buf##array": [
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0"
+                    ]
+                },
+                "_M_dataplus##struct": {
+                    "_M_p": "0x0",
+                    "std::allocator<char>##struct": {
+                        "std::__new_allocator<char>##struct": {}
+                    }
+                },
+                "_M_string_length": "0x0"
+            },
+            "base_public_int": "0x0",
+            "derived_private_int##error": "Error accessing field: There is no member or method named derived_private_int.",
+            "derived_private_string##error": "Error accessing field: There is no member or method named derived_private_string.",
+            "derived_protected_int##error": "Error accessing field: There is no member or method named derived_protected_int.",
+            "derived_protected_string##error": "Error accessing field: There is no member or method named derived_protected_string.",
+            "derived_public_int##error": "Error accessing field: There is no member or method named derived_public_int.",
+            "static_const_derived_public_int##error": "Error accessing field: There is no member or method named static_const_derived_public_int.",
+            "static_derived_protected_int##error": "Error accessing field: There is no member or method named static_derived_protected_int.",
+            "static_derived_public_int##error": "Error accessing field: There is no member or method named static_derived_public_int."
+        },
+        "base_protected_string##struct": {
+            "##unnamed_field_2##union": {
+                "_M_allocated_capacity": "0x0",
+                "_M_local_buf##array": [
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0"
+                ]
+            },
+            "_M_dataplus##struct": {
+                "_M_p": "0x0",
+                "std::allocator<char>##struct": {
+                    "std::__new_allocator<char>##struct": {}
+                }
+            },
+            "_M_string_length": "0x0"
+        },
+        "base_public_int": "0x0",
+        "derived_private_int": "0x0",
+        "derived_private_string##struct": {
+            "##unnamed_field_2##union": {
+                "_M_allocated_capacity": "0x0",
+                "_M_local_buf##array": [
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0"
+                ]
+            },
+            "_M_dataplus##struct": {
+                "_M_p": "0x0",
+                "std::allocator<char>##struct": {
+                    "std::__new_allocator<char>##struct": {}
+                }
+            },
+            "_M_string_length": "0x0"
+        },
+        "derived_protected_int": "0x0",
+        "derived_protected_string##struct": {
+            "##unnamed_field_2##union": {
+                "_M_allocated_capacity": "0x0",
+                "_M_local_buf##array": [
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0"
+                ]
+            },
+            "_M_dataplus##struct": {
+                "_M_p": "0x0",
+                "std::allocator<char>##struct": {
+                    "std::__new_allocator<char>##struct": {}
+                }
+            },
+            "_M_string_length": "0x0"
+        },
+        "derived_public_int": "0x0",
+        "static_const_derived_public_int": "0x0",
+        "static_derived_protected_int": "0x0",
+        "static_derived_public_int": "0x0"
+    },
+    "int_ptr": "0x0",
+    "object_array##array": [
+        {
+            "data##struct": {
+                "##unnamed_field_2##union": {
+                    "_M_allocated_capacity": "0x0",
+                    "_M_local_buf##array": [
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0"
+                    ]
+                },
+                "_M_dataplus##struct": {
+                    "_M_p": "0x0",
+                    "std::allocator<char>##struct": {
+                        "std::__new_allocator<char>##struct": {}
+                    }
+                },
+                "_M_string_length": "0x0"
+            },
+            "id": "0x0"
+        },
+        {
+            "data##struct": {
+                "##unnamed_field_2##union": {
+                    "_M_allocated_capacity": "0x0",
+                    "_M_local_buf##array": [
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0"
+                    ]
+                },
+                "_M_dataplus##struct": {
+                    "_M_p": "0x0",
+                    "std::allocator<char>##struct": {
+                        "std::__new_allocator<char>##struct": {}
+                    }
+                },
+                "_M_string_length": "0x0"
+            },
+            "id": "0x0"
+        },
+        {
+            "data##struct": {
+                "##unnamed_field_2##union": {
+                    "_M_allocated_capacity": "0x0",
+                    "_M_local_buf##array": [
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0",
+                        "0x0"
+                    ]
+                },
+                "_M_dataplus##struct": {
+                    "_M_p": "0x0",
+                    "std::allocator<char>##struct": {
+                        "std::__new_allocator<char>##struct": {}
+                    }
+                },
+                "_M_string_length": "0x0"
+            },
+            "id": "0x0"
+        }
+    ],
+    "pointer_to_contained##struct": {
+        "data##struct": {
+            "##unnamed_field_2##union": {
+                "_M_allocated_capacity": "0x0",
+                "_M_local_buf##array": [
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0",
+                    "0x0"
+                ]
+            },
+            "_M_dataplus##struct": {
+                "_M_p": "0x0",
+                "std::allocator<char>##struct": {
+                    "std::__new_allocator<char>##struct": {}
+                }
+            },
+            "_M_string_length": "0x0"
+        },
+        "id": "0x0"
+    },
+    "primitive_array##array": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0"
+    ],
+    "reference_to_contained": "@0xPTR",
+    "shape_member": "Shape::SQUARE",
+    "uninit_basic_ptr##struct": {
+        "public_bool": "MemoryError",
+        "public_char": "MemoryError",
+        "public_float": "MemoryError",
+        "public_int": "MemoryError",
+        "public_string##struct": {
+            "##unnamed_field_2##union": {
+                "_M_allocated_capacity": "MemoryError",
+                "_M_local_buf##array": "Error processing array: Cannot access memory at address 0x2e78786362696c87"
+            },
+            "_M_dataplus##struct": {
+                "_M_p": "MemoryError",
+                "std::allocator<char>##struct": {
+                    "std::__new_allocator<char>##struct": {}
+                }
+            },
+            "_M_string_length": "MemoryError"
+        }
+    },
+    "uninit_int_ptr": "MemoryError"
+}

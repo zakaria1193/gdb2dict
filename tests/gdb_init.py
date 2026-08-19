@@ -24,6 +24,14 @@ def init():
     # Paging off
     gdb.execute("set pagination off")
 
+    # Add src to python path
+    import sys
+    # Assuming this script is in tests/ and src is ../src
+    # Adjust if the script moves or if the structure is different.
+    src_path = os.path.join(os.path.dirname(__file__), '..', 'src')
+    if src_path not in sys.path:
+        sys.path.insert(0, src_path)
+
     print("🏁 GDB script initialized")
 
     # Run the executable
@@ -100,7 +108,7 @@ def process_test_result(name: str,
         print("❌ Test failed: " + name)
         print("Expected: " + str(expected_result))
         print("Got: " + str(output_dict))
-        raise Exception("Test failed: " + name + " because " + e)
+        raise Exception("Test failed: " + name + " because " + str(e))
     else:
         print("✅ Test passed: " + name)
 
