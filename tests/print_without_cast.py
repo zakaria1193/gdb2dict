@@ -1,6 +1,3 @@
-import json
-import os
-
 import gdb
 from gdb_init import init, test_function_wrapper
 
@@ -9,7 +6,7 @@ import gdb2dict
 
 class CustomBreakpointNoCast(gdb.Breakpoint):
     def stop(self):
-        print("💥 Breakpoint hit at address: " +(self.location))
+        print("💥 Breakpoint hit at address: " + (self.location))
         value = gdb.parse_and_eval("*point")
 
         # Check that the type is correct

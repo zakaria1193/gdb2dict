@@ -31,22 +31,34 @@ pushd "$SCRIPT_DIR" || exit 1
 
 # Compile
 make -C c_project
+make -C cpp_project
 
 function run_test_program_with_gdb_script() {
-  gdb_script=$1
+  test_program=$1
+  gdb_script=$2
   # Run program with gdb
   # The added options are recommended for automated GDB testing, without using user's .gdbinit
-  gdb c_project/test_program -x "$gdb_script" --batch --nx --nw --return-child-result
+  gdb "$test_program" -x "$gdb_script" --batch --nx --nw --return-child-result
 }
 
-GDB_TEST_SCRIPTS=(
+C_TEST_SCRIPTS=(
   ./print_after_cast.py
   ./print_without_cast.py
 )
 
-for gdb_script in "${GDB_TEST_SCRIPTS[@]}"; do
-  echo "Running test $gdb_script"
-  run_test_program_with_gdb_script "$gdb_script" || exit 1
+CPP_TEST_SCRIPTS=(
+  ./print_cpp_objects.py
+  ./print_cpp_std_string.py
+)
+
+for gdb_script in "${C_TEST_SCRIPTS[@]}"; do
+  echo "Running C test $gdb_script"
+  run_test_program_with_gdb_script c_project/test_program "$gdb_script" || exit 1
+done
+
+for gdb_script in "${CPP_TEST_SCRIPTS[@]}"; do
+  echo "Running C++ test $gdb_script"
+  run_test_program_with_gdb_script cpp_project/test_program_cpp "$gdb_script" || exit 1
 done
 
 

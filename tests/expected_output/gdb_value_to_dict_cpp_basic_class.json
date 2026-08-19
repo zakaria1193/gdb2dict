@@ -1,0 +1,18 @@
+{
+    "public_int": "0x7b",
+    "public_float": "2.5",
+    "public_bool": "0x0",
+    "public_char": "0x5a",
+    "name##array": [
+        "0x62",
+        "0x61",
+        "0x73",
+        "0x69",
+        "0x63",
+        "0x0",
+        "0x0",
+        "0x0"
+    ],
+    "color": "BLUE",
+    "shape": "Shape::TRIANGLE"
+}

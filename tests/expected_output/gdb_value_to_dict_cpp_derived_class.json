@@ -1,0 +1,14 @@
+{
+    "Base##base": {
+        "base_public_int": "0x1",
+        "static_base_public_int": "0x65",
+        "static_const_base_public_int": "0x64",
+        "base_protected_int": "0x2",
+        "base_private_int": "0x3"
+    },
+    "derived_public_int": "0x4",
+    "base_public_int": "0x28",
+    "static_derived_public_int": "0xc9",
+    "derived_protected_int": "0x5",
+    "derived_private_int": "0x6"
+}

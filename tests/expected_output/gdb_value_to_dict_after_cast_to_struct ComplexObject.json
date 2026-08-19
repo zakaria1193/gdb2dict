@@ -15,6 +15,7 @@
             "0x0",
             "0x0",
             "0x0",
+            "0x0",
             "0x0"
         ],
         "shape##struct": {
@@ -32,6 +33,7 @@
                 "intValue": "0x0",
                 "floatValue": "0",
                 "stringValue##array": [
+                    "0x0",
                     "0x0",
                     "0x0",
                     "0x0",

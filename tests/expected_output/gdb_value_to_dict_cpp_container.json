@@ -1,0 +1,105 @@
+{
+    "container_id": "0x4d",
+    "embedded##struct": {
+        "public_int": "0xa",
+        "public_float": "1.5",
+        "public_bool": "0x1",
+        "public_char": "0x41",
+        "name##array": [
+            "0x62",
+            "0x61",
+            "0x73",
+            "0x69",
+            "0x63",
+            "0x0",
+            "0x0",
+            "0x0"
+        ],
+        "color": "RED",
+        "shape": "Shape::CIRCLE"
+    },
+    "array_of_objects##array": [
+        {
+            "public_int": "0x64",
+            "public_float": "1.5",
+            "public_bool": "0x1",
+            "public_char": "0x41",
+            "name##array": [
+                "0x62",
+                "0x61",
+                "0x73",
+                "0x69",
+                "0x63",
+                "0x0",
+                "0x0",
+                "0x0"
+            ],
+            "color": "RED",
+            "shape": "Shape::CIRCLE"
+        },
+        {
+            "public_int": "0x65",
+            "public_float": "1.5",
+            "public_bool": "0x1",
+            "public_char": "0x41",
+            "name##array": [
+                "0x62",
+                "0x61",
+                "0x73",
+                "0x69",
+                "0x63",
+                "0x0",
+                "0x0",
+                "0x0"
+            ],
+            "color": "RED",
+            "shape": "Shape::CIRCLE"
+        },
+        {
+            "public_int": "0x66",
+            "public_float": "1.5",
+            "public_bool": "0x1",
+            "public_char": "0x41",
+            "name##array": [
+                "0x62",
+                "0x61",
+                "0x73",
+                "0x69",
+                "0x63",
+                "0x0",
+                "0x0",
+                "0x0"
+            ],
+            "color": "RED",
+            "shape": "Shape::CIRCLE"
+        }
+    ],
+    "array_of_ints##array": [
+        "0x1",
+        "0x2",
+        "0x3",
+        "0x4"
+    ],
+    "base_ptr_to_derived": "0xADDR",
+    "node_ptr": "0xADDR",
+    "reference_to_embedded##struct": {
+        "public_int": "0xa",
+        "public_float": "1.5",
+        "public_bool": "0x1",
+        "public_char": "0x41",
+        "name##array": [
+            "0x62",
+            "0x61",
+            "0x73",
+            "0x69",
+            "0x63",
+            "0x0",
+            "0x0",
+            "0x0"
+        ],
+        "color": "RED",
+        "shape": "Shape::CIRCLE"
+    },
+    "void_ptr": "0x0",
+    "null_base_ptr": "0x0"
+}
