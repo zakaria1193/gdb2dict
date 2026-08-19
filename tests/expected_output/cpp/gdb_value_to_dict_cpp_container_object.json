@@ -1,0 +1,72 @@
+{
+    "basic_obj##class": {
+        "public_bool": "true",
+        "public_char": "65 'A'",
+        "public_float": "3.1400001",
+        "public_int": "0x3e7",
+        "public_string": "\"Hello\""
+    },
+    "basic_ptr##class": {
+        "public_bool": "true",
+        "public_char": "65 'A'",
+        "public_float": "3.1400001",
+        "public_int": "0xa",
+        "public_string": "\"Hello\""
+    },
+    "color_member": "BLUE",
+    "contained_obj##class": {
+        "data": "\"ContainerMainContained\"",
+        "id": "0x1"
+    },
+    "derived_obj##class": {
+        "base_private_int": "0x3",
+        "base_private_string": "\"BasePrivate\"",
+        "base_protected_int": "0x2",
+        "base_protected_string": "\"DerivedProtectedHiding\"",
+        "base_public_int": "0x28",
+        "derived_private_int": "0x6",
+        "derived_private_string": "\"DerivedPrivate\"",
+        "derived_protected_int": "0x5",
+        "derived_protected_string": "\"DerivedProtected\"",
+        "derived_public_int": "0x378",
+        "static_base_protected_int": "0x66",
+        "static_base_public_int": "0x65",
+        "static_const_base_public_int": "0x64",
+        "static_derived_protected_int": "0xca",
+        "static_derived_public_int": "0xc9",
+        "static_const_derived_public_int": "0xc8"
+    },
+    "int_ptr": "0x315",
+    "object_array##array": [
+        {
+            "data": "\"Elem0Modified\"",
+            "id": "0xa"
+        },
+        {
+            "data": "\"ArrayElem1\"",
+            "id": "0xb"
+        },
+        {
+            "data": "\"ArrayElem2\"",
+            "id": "0xc"
+        }
+    ],
+    "pointer_to_contained##class": {
+        "data": "\"ModifiedPointedTo\"",
+        "id": "0x2"
+    },
+    "primitive_array##array": [
+        "0xa",
+        "0x2",
+        "0x3",
+        "0x4",
+        "0x5"
+    ],
+    "reference_to_contained##class": {
+        "data": "\"ReferencedContained\"",
+        "id": "0x4d"
+    },
+    "shape_member": "Shape::SQUARE",
+    "uninit_basic_ptr": "0x0",
+    "uninit_int_ptr": "0x0"
+}

@@ -108,6 +108,16 @@ Another metadata can be added to the keys, it's `##unnamed_field_1##struct`,
 That's to cover for [ C11's unnanmed fields ](https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html)
 that can be sub-structs or sub-unions without a name.
 
+### C++ Object Support
+
+`gdb2dict` also supports C++ objects, including:
+-   **Classes:** Members of C++ classes are extracted similar to C structs. Class instance members will have a `##class` suffix in their key (e.g., `my_class_member##class`).
+-   **Inheritance:** Members from both base and derived classes are included. For pointers or references to base class types that point to derived class objects, `gdb2dict` will attempt to resolve and represent the actual dynamic type of the object.
+-   **Polymorphism:** When a base class pointer/reference points to a derived object, the script aims to capture the fields of the derived object.
+-   **Static Members:** Static data members of classes are also included in the output.
+
+For detailed examples of how C++ objects are represented, please refer to the test C++ project in `tests/cpp_project` and the corresponding expected JSON outputs in `tests/expected_output/cpp/`.
+
 ## Use cases
 
 Imagine you are trying to automatize the debugging of a measuring, and you want to parse the output of a measure function that returns a structure, you can use this tool to convert the output of gdb to a JSON format,
