@@ -15,7 +15,8 @@ class CustomBreakpointWithCast(gdb.Breakpoint):
 
     def stop(self):
         """
-        Stop the program at the breakpoint and print the struct or union as dict/list
+        Stop the program at the breakpoint and print the struct or union
+        as dict/list
         """
         print("💥 Breakpoint hit at address: " + (self.location))
 

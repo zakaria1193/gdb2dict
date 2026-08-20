@@ -1,4 +1,3 @@
-import enum
 import json
 import os
 from pprint import pprint
@@ -33,6 +32,31 @@ def init():
     gdb.execute("quit")
 
 
+def mask_unstable_values(obj, unstable_keys):
+    """
+    Replace the values of the named keys with a placeholder.
+
+    Addresses move between runs (ASLR, loader layout), so a test that dumps
+    a pointer has to say so explicitly. Masking is driven by an explicit key
+    list rather than by guessing from the text of a value: a union member or
+    an int can look exactly like an address, and silently rewriting those
+    would make the fixtures stop checking the data.
+    """
+
+    if not unstable_keys:
+        return obj
+
+    if isinstance(obj, dict):
+        return {key: ("0xADDR" if key in unstable_keys
+                      else mask_unstable_values(value, unstable_keys))
+                for key, value in obj.items()}
+
+    if isinstance(obj, list):
+        return [mask_unstable_values(value, unstable_keys) for value in obj]
+
+    return obj
+
+
 def save_as_expected_test_result(name: str,
                                  obj: [dict, list]):
     """
@@ -51,8 +75,6 @@ def save_as_expected_test_result(name: str,
     if not name:
         print("❌ Test name not set, writing test result failed")
         return
-
-    print (output_dir, name)
 
     output_path = os.path.join(output_dir, name + ".json")
 
@@ -73,7 +95,8 @@ def process_test_result(name: str,
     """
     Process the result of a script run
 
-    Either compare to the expected result or save the result as the expected result
+    Either compare to the expected result or save the result as the
+    expected result
     """
 
     if not os.environ.get("EXPECTED_OUTPUT_DIR"):
@@ -83,7 +106,8 @@ def process_test_result(name: str,
         save_as_expected_test_result(name, output_dict)
         return
 
-    test_result_path = os.path.join(os.environ.get("EXPECTED_OUTPUT_DIR"), name + ".json")
+    test_result_path = os.path.join(os.environ.get("EXPECTED_OUTPUT_DIR"),
+                                    name + ".json")
     print("🔍 Loading test result from {}".format(test_result_path))
 
     with open(test_result_path, "r") as file_handle:
@@ -100,10 +124,9 @@ def process_test_result(name: str,
         print("❌ Test failed: " + name)
         print("Expected: " + str(expected_result))
         print("Got: " + str(output_dict))
-        raise Exception("Test failed: " + name + " because " + e)
+        raise Exception("Test failed: " + name + " because " + str(e))
     else:
         print("✅ Test passed: " + name)
-
 
 
 def non_gdb_args_only(function_args):
@@ -118,15 +141,25 @@ def non_gdb_args_only(function_args):
 
 def test_function_wrapper(function: Callable,
                           function_args: tuple,
-                          test_name_suffix: str):
+                          test_name_suffix: str,
+                          function_kwargs: dict = None,
+                          unstable_keys: tuple = ()):
     """
     Wrapper for test functions
+
+    :param unstable_keys: names of keys whose value is an address and can
+                          therefore not be compared between runs
     """
 
     print("🔍 Testing function: " + function.__name__)
 
+    if function_kwargs is None:
+        function_kwargs = {}
+
     # Run the test function
-    output = function(*function_args)
+    output = mask_unstable_values(function(*function_args,
+                                           **function_kwargs),
+                                  unstable_keys)
 
     print("⏩Output: ")
     pprint(output)

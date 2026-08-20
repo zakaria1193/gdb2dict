@@ -11,3 +11,7 @@ __pycache__/
 # due to using tox and pytest
 .tox
 .cache
+
+# test artifacts
+*.o
+tests/cpp_project/test_program_cpp

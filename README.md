@@ -108,6 +108,55 @@ Another metadata can be added to the keys, it's `##unnamed_field_1##struct`,
 That's to cover for [ C11's unnanmed fields ](https://gcc.gnu.org/onlinedocs/gcc/Unnamed-Fields.html)
 that can be sub-structs or sub-unions without a name.
 
+## C++ support
+
+C++ objects are supported as well. A class is a struct as far as gdb is
+concerned, so class members come out under the same `##struct` key as C
+struct members do. On top of that:
+
+- **Inheritance**: every base class subobject is dumped under its own
+  `BaseName##base` key. Nesting the bases instead of flattening them keeps a
+  derived member that hides a base member of the same name distinguishable
+  from the one it hides.
+- **Polymorphism**: passing a `Base *` or a `Base &` that really points at a
+  `Derived` dumps the `Derived`. The dynamic type is resolved when the
+  pointer is dereferenced.
+- **Static data members** are included alongside the instance members. A
+  static that the program never defines out of line has no storage to read
+  and is left out.
+- **References** are always resolved to the object they refer to.
+- The vtable pointer and other compiler generated members are skipped.
+
+```python
+# obj is a Base* that points at a Derived
+gdb2dict.gdb_value_to_dict(obj)
+{
+    "Base##base": {
+        "base_public_int": "0x1",
+        "static_base_public_int": "0x65"
+    },
+    "derived_public_int": "0x4"
+}
+```
+
+### Following pointers
+
+By default a pointer member is rendered as its address, exactly as it always
+was. Pass `follow_pointers=True` to dereference pointers that point at a
+struct, class or union and dump them inline instead:
+
+```python
+gdb2dict.gdb_value_to_dict(value, follow_pointers=True)
+```
+
+Null pointers stay as `"0x0"` rather than being followed. Structures that
+point back at themselves are detected and reported as `"##cycle"` instead of
+recursing forever, and `max_depth` (64 by default) stops a dump that nests
+deeper than expected, reporting `"##max_depth_reached"`.
+
+A member gdb refuses to read is reported under a `##unreadable` key rather
+than being silently dropped.
+
 ## Use cases
 
 Imagine you are trying to automatize the debugging of a measuring, and you want to parse the output of a measure function that returns a structure, you can use this tool to convert the output of gdb to a JSON format,
