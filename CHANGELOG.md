@@ -1,6 +1,10 @@
 ## Changelog
 
-# Unreleased
+# V1.2.0
+
+Released 2026-08-20. The C++ support, the `follow_pointers` mode and the
+array off-by-one fix in this release were developed with Claude Opus 5
+(via Claude Code).
 
 - Add C++ support: base class subobjects are dumped under `BaseName##base`,
   the dynamic type of a polymorphic pointer/reference is resolved, static
