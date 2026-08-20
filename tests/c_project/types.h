@@ -1,6 +1,8 @@
 #ifndef TEST_HEADER_H
 #define TEST_HEADER_H
 
+#include <stdint.h>
+
 enum Color {
     RED,
     GREEN,
@@ -43,6 +45,20 @@ struct ComplexObject {
         char stringValue[10];
         struct Shape shape;
     }; // unnamed union member (C11)
+};
+
+/*
+ * Regression coverage for issue #1: a gdb array type reports an inclusive
+ * range, so the last element used to be dropped. Every array below is filled
+ * with distinct values, and the last element of each is non-zero, so a
+ * truncated dump changes the fixture instead of hiding in a tail of zeros.
+ */
+struct Arrays {
+    int16_t int16_array[10];
+    struct Point point_array[3];
+    int matrix[2][3];
+    enum Color color_array[3];
+    char text[6];
 };
 
 #endif /* TEST_HEADER_H */

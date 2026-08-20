@@ -7,6 +7,7 @@ MAP_TYPE_ENUM_TO_TYPE = {
     "TYPE_STRUCT_POINT": "struct Point",
     "TYPE_STRUCT_SHAPE": "struct Shape",
     "TYPE_STRUCT_COMPLEX": "struct ComplexObject",
+    "TYPE_STRUCT_ARRAYS": "struct Arrays",
 }
 
 
