@@ -1,6 +1,8 @@
 ## Changelog
 
-# Unreleased
+# V1.3.0
+
+Released 2026-08-20. A packaging-only release: no library code changed.
 
 - Drop the claim of support for Python versions that have reached end of life.
   `requires-python` is now `>=3.10` (was `>=3.7`) and the classifiers list
