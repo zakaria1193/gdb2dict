@@ -1,5 +1,13 @@
 ## Changelog
 
+# Unreleased
+
+- Drop the claim of support for Python versions that have reached end of life.
+  `requires-python` is now `>=3.10` (was `>=3.7`) and the classifiers list
+  3.10 through 3.14, matching the versions the test matrix runs on
+- CI now tests every currently supported Python: 3.10, 3.11, 3.12, 3.13 and
+  3.14 (3.9 reached end of life in October 2025)
+
 # V1.2.0
 
 Released 2026-08-20. The C++ support, the `follow_pointers` mode and the
