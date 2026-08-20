@@ -5,7 +5,8 @@ enum types {
   TYPE_PRIMITIVE,
   TYPE_STRUCT_POINT,
   TYPE_STRUCT_SHAPE,
-  TYPE_STRUCT_COMPLEX
+  TYPE_STRUCT_COMPLEX,
+  TYPE_STRUCT_ARRAYS
 };
 
 struct Point point_ = {
@@ -18,6 +19,16 @@ struct Shape shape_ = {
   .intValue = 42,
   .center = {30, 40},
   .data = { .stringValue = "Hello" }
+};
+
+// Distinct, non-zero-terminated values so that dropping the last element of
+// any array (issue #1) is visible in the dumped output.
+struct Arrays arrays_ = {
+  .int16_array = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109},
+  .point_array = {{1, 2}, {3, 4}, {5, 6}},
+  .matrix = {{11, 12, 13}, {14, 15, 16}},
+  .color_array = {RED, GREEN, BLUE},
+  .text = {'g', 'd', 'b', '2', 'd', '!'}
 };
 
 struct ComplexObject complexObj_ = {
@@ -49,6 +60,7 @@ int main() {
     printStructure(&point_, TYPE_STRUCT_POINT);
     printStructure(&shape_, TYPE_STRUCT_SHAPE);
     printStructure(&complexObj_, TYPE_STRUCT_COMPLEX);
+    printStructure(&arrays_, TYPE_STRUCT_ARRAYS);
 
     return 0;
 }
