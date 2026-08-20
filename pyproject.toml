@@ -130,8 +130,7 @@ test = ["coverage"]
 [project.urls]  # Optional
 "Homepage" = "https://github.com/zakaria1193/gdb2dict"
 "Bug Reports" = "https://github.com/zakaria1193/gdb2dict/issues"
-"Funding" = "https://donate.pypi.org"
-"Say Thanks!" = "http://saythanks.io/to/example"
+"Changelog" = "https://github.com/zakaria1193/gdb2dict/blob/main/CHANGELOG.md"
 "Source" = "https://github.com/zakaria1193/gdb2dict"
 
 # The following would provide a command line executable called `sample`
